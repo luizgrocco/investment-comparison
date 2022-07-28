@@ -31,7 +31,7 @@ build project:
 deploy to netlify:
   stage: deploy
   only:
-    - master
+    - main
   image: node:14.17.0
   script:
     - npm install -g --unsafe-perm=true netlify-cli
