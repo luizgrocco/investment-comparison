@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div>Hello!</div>
+      <div>Oi Giovanna, vc é minha 🦒inha!</div>
     </ThemeProvider>
   );
 };
