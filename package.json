@@ -1,10 +1,9 @@
 {
-  "name": "mlvie",
+  "name": "comparador-de-ativos",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">=14.17.0",
-    "yarn": ">=1.22.15",
     "npm": "please-use-yarn"
   },
   "scripts": {
