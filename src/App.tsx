@@ -1,24 +1,18 @@
 import React from "react";
-import "./App.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { theme } from "./themes";
 
-function App() {
+const App: React.FC = () => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  console.log("prefersDarkMode", prefersDarkMode);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div>Hello!</div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
