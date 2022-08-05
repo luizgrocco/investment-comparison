@@ -1,14 +1,15 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import { PaletteMode } from "@mui/material";
 
 // Define a type for the slice state
 interface ThemeState {
-  mode: "dark" | "light";
+  mode?: PaletteMode;
 }
 
 // Define the initial state using that type
 const initialState: ThemeState = {
-  mode: "light",
+  mode: undefined,
 };
 
 export const themeSlice = createSlice({

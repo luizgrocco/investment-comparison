@@ -3,13 +3,13 @@ import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import App from "./App";
+import AppInitializer from "./AppInitializer";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <AppInitializer />
     </Provider>
   </React.StrictMode>
 );
