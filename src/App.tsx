@@ -1,7 +1,8 @@
 import React from "react";
+import { Analysis } from "./pages";
 
 const App: React.FC = () => {
-  return <div>App!</div>;
+  return <Analysis />;
 };
 
 export default App;

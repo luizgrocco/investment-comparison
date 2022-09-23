@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { CssBaseline } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { getThemeByMode } from "./themes";
 import App from "./App";
 import { FloatDevTools } from "./components";
@@ -47,7 +47,7 @@ const AppInitializer: React.FC = () => {
     setCachedDarkMode(mode);
   }, [mode, setCachedDarkMode]);
 
-  const theme = useMemo(() => createTheme(getThemeByMode(mode)), [mode]);
+  const theme = useMemo(() => getThemeByMode(mode), [mode]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

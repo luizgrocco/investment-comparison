@@ -1,16 +1,21 @@
 import styled from "styled-components";
-import { SpeedDial } from "@mui/material";
+import { SpeedDial, SpeedDialAction } from "@mui/material";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 export const SSpeedDial = styled(SpeedDial)`
-  position: sticky;
-  bottom: 16;
-  right: 16;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
 `;
+
+export const SSpeedDialAction = styled(SpeedDialAction)``;
 
 export const SSpeedDialIcon = styled(SpeedDialIcon)`
-  color: ${({ theme }) => theme.palette.text.primary};
+  /* color: ${({ theme }) => theme.palette.text.primary}; */
 `;
 
-// export const SSpeedDialAction = styled(SpeedDialAction)`
-// `;
+export const SDarkModeIcon = styled(DarkModeIcon)``;
+
+export const SLightModeIcon = styled(LightModeIcon)``;
