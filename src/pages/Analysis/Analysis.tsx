@@ -5,10 +5,15 @@ import {
   SConfigurationFirstRow,
   STitle,
   SShareButtonsContainer,
+  SGlobalConfigsPositioner,
   SConfigurationSecondRow,
   SSubtitle,
 } from "./styles";
-import { ShareLinkButton, ShareQrCodeButton } from "../../components";
+import {
+  ShareLinkButton,
+  ShareQrCodeButton,
+  GlobalConfigsSlider,
+} from "../../components";
 
 export const Analysis: React.FC = () => {
   return (
@@ -19,6 +24,9 @@ export const Analysis: React.FC = () => {
           <SShareButtonsContainer>
             <ShareQrCodeButton />
             <ShareLinkButton />
+            <SGlobalConfigsPositioner>
+              <GlobalConfigsSlider />
+            </SGlobalConfigsPositioner>
           </SShareButtonsContainer>
         </SConfigurationFirstRow>
         <SConfigurationSecondRow>

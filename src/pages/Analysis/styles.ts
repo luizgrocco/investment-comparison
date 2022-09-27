@@ -33,6 +33,12 @@ export const SShareButtonsContainer = styled(Grid)`
   display: flex;
 `;
 
+export const SGlobalConfigsPositioner = styled(Grid)`
+  position: absolute;
+  top: 68px;
+  right: 0;
+`;
+
 export const SConfigurationSecondRow = styled(Grid)`
   display: flex;
   flex: 1;
