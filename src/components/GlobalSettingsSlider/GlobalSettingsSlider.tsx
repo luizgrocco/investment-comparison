@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  SGlobalConfigsContainer,
+  SGlobalSettingsContainer,
   SIconButton,
   SSettingsIcon,
   SSlide,
@@ -8,16 +8,16 @@ import {
 } from "./styles";
 import { ThemeSelectorButton } from "../ThemeSelectorButton/ThemeSelectorButton";
 
-export const GlobalConfigsSlider: React.FC = () => {
+export const GlobalSettingsSlider: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDrawer = (): void => {
+  const toggleSlide = (): void => {
     setIsOpen((currentIsOpen) => !currentIsOpen);
   };
 
   return (
-    <SGlobalConfigsContainer>
-      <SIconButton onClick={toggleDrawer}>
+    <SGlobalSettingsContainer>
+      <SIconButton onClick={toggleSlide}>
         <SSettingsIcon />
       </SIconButton>
       <SSlide
@@ -33,6 +33,6 @@ export const GlobalConfigsSlider: React.FC = () => {
           {/* <LanguageSelectorDropdown /> */}
         </SConfigGroupContainer>
       </SSlide>
-    </SGlobalConfigsContainer>
+    </SGlobalSettingsContainer>
   );
 };

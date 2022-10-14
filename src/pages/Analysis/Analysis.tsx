@@ -8,11 +8,13 @@ import {
   SGlobalConfigsPositioner,
   SConfigurationSecondRow,
   SSubtitle,
+  SSearchContainer,
 } from "./styles";
 import {
   ShareLinkButton,
   ShareQrCodeButton,
-  GlobalConfigsSlider,
+  GlobalSettingsSlider,
+  SearchBar,
 } from "../../components";
 
 export const Analysis: React.FC = () => {
@@ -25,7 +27,7 @@ export const Analysis: React.FC = () => {
             <ShareQrCodeButton />
             <ShareLinkButton />
             <SGlobalConfigsPositioner>
-              <GlobalConfigsSlider />
+              <GlobalSettingsSlider />
             </SGlobalConfigsPositioner>
           </SShareButtonsContainer>
         </SConfigurationFirstRow>
@@ -35,6 +37,9 @@ export const Analysis: React.FC = () => {
           </SSubtitle>
         </SConfigurationSecondRow>
       </SConfigurationContainer>
+      <SSearchContainer>
+        <SearchBar />
+      </SSearchContainer>
     </SPageContainer>
   );
 };

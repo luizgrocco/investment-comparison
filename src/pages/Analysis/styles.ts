@@ -12,13 +12,14 @@ export const SPageContainer = styled(Grid)`
 export const SConfigurationContainer = styled(Grid)`
   display: flex;
   flex-direction: column;
-  padding: 0 32px;
+  padding: 0 2%;
+  padding-right: 0;
 `;
 
 export const SConfigurationFirstRow = styled(Grid)`
   display: flex;
   flex: 1;
-  margin-top: 24px;
+  margin-top: 2.5vh;
   justify-content: space-between;
   align-items: center;
 `;
@@ -29,13 +30,13 @@ export const STitle = styled(Typography)`
   font-size: 23px;
 `;
 
+// TODO: Turn this gap into a percentage
 export const SShareButtonsContainer = styled(Grid)`
   display: flex;
+  gap: 20px;
 `;
 
 export const SGlobalConfigsPositioner = styled(Grid)`
-  position: absolute;
-  top: 68px;
   right: 0;
 `;
 
@@ -48,4 +49,10 @@ export const SConfigurationSecondRow = styled(Grid)`
 
 export const SSubtitle = styled(Typography)`
   font-size: 16px;
+`;
+
+export const SSearchContainer = styled(Grid)`
+  display: flex;
+  margin-top: 2vh;
+  padding: 0 2%;
 `;

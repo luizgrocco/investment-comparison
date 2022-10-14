@@ -34,7 +34,7 @@ export const getThemeByMode = (mode: PaletteMode): typeof theme => {
               main: "#254057",
             },
             secondary: {
-              main: "#000000",
+              main: "#202a40",
             },
             text: {
               primary: "#343A40",
@@ -51,11 +51,24 @@ export const getThemeByMode = (mode: PaletteMode): typeof theme => {
           }
         : {
             // palette values for dark mode
+            primary: {
+              main: "#254057",
+            },
+            secondary: {
+              main: "#ffffff",
+            },
             text: {
               primary: "#ffffff",
             },
+            error: {
+              main: "#DF0B0B",
+            },
             background: {
               default: "#202a40",
+              paper: "#254057",
+            },
+            info: {
+              main: "#27618f",
             },
           }),
     },

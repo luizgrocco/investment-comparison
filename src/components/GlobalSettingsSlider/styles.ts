@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Slide, Grid, IconButton } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-export const SGlobalConfigsContainer = styled(Grid)`
+export const SGlobalSettingsContainer = styled(Grid)`
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -10,12 +10,11 @@ export const SGlobalConfigsContainer = styled(Grid)`
   background-color: ${({ theme }) => theme.palette.primary.main};
   border-radius: 8px 0 0 8px;
   color: ${({ theme }) => theme.palette.primary.contrastText};
-  height: 2.5em;
+  padding-left: 14px;
 `;
 
 export const SIconButton = styled(IconButton)`
   color: inherit;
-  padding-left: 14px;
 `;
 
 export const SSettingsIcon = styled(SettingsIcon)``;
