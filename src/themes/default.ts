@@ -1,8 +1,10 @@
 import { PaletteMode } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
-export const getThemeByMode = (mode: PaletteMode): typeof theme => {
-  let theme = createTheme({
+export const getThemeByMode = (
+  mode: PaletteMode
+): typeof themeDerivedFromLiteral => {
+  const themeOnlyLiterals = createTheme({
     assetColors: [
       "#2E56A2",
       "#6C6C6C",
@@ -77,14 +79,14 @@ export const getThemeByMode = (mode: PaletteMode): typeof theme => {
     },
   });
 
-  theme = createTheme(theme, {
+  const themeDerivedFromLiteral = createTheme(themeOnlyLiterals, {
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
             "&:hover": {
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.primary.contrastText,
+              // backgroundColor: theme.palette.primary.main,
+              // color: theme.palette.primary.contrastText,
             },
           },
         },
@@ -92,5 +94,5 @@ export const getThemeByMode = (mode: PaletteMode): typeof theme => {
     },
   });
 
-  return theme;
+  return themeDerivedFromLiteral;
 };

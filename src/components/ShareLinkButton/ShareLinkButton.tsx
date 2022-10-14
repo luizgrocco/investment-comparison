@@ -3,7 +3,7 @@ import { SButton, SContentCopyIcon, SButtonText } from "./styles";
 
 export const ShareLinkButton: React.FC = () => {
   return (
-    <SButton>
+    <SButton variant="contained">
       <SContentCopyIcon />
       <SButtonText>Copiar Link</SButtonText>
     </SButton>

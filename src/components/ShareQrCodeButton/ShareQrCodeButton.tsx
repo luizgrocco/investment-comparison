@@ -3,7 +3,7 @@ import { SButton, SQrCodeIcon, SButtonText } from "./styles";
 
 export const ShareQrCodeButton: React.FC = () => {
   return (
-    <SButton>
+    <SButton variant="contained">
       <SQrCodeIcon />
       <SButtonText>Gerar QR Code</SButtonText>
     </SButton>
