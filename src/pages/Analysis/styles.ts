@@ -30,7 +30,6 @@ export const STitle = styled(Typography)`
   font-size: 23px;
 `;
 
-// TODO: Turn this gap into a percentage
 export const SShareButtonsContainer = styled(Grid)`
   display: flex;
   gap: 20px;
