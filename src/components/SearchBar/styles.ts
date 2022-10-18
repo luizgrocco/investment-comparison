@@ -1,12 +1,15 @@
-import styled from "styled-components";
 import {
-  OutlinedInput,
-  Grid,
   CircularProgress,
+  Grid,
   IconButton,
+  OutlinedInput,
+  Paper,
+  Popper,
 } from "@mui/material";
+
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
+import styled from "styled-components";
 
 export const SSearchBarContainer = styled(Grid)`
   display: flex;
@@ -42,9 +45,16 @@ export const SCircularProgress = styled(CircularProgress).attrs(() => ({
   margin-right: 10px;
 `;
 
-export const SSearchResults = styled(Grid)`
+export const SSearchResults = styled(Popper).attrs(() => ({
+  placement: "bottom-start",
+}))`
+  width: 100%;
+`;
+
+export const SSeachResultsContainer = styled(Paper)`
+  /* TODO: Review background-color for dark mode specially */
   display: flex;
-  position: relative;
   flex-direction: column;
-  widht: 100%;
+  width: 100%;
+  margin-top: 10px;
 `;

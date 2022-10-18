@@ -2,23 +2,26 @@ import React, {
   ChangeEventHandler,
   MouseEventHandler,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import {
-  SSearchBarContainer,
-  SSearchInput,
-  SSearchIcon,
-  SClearIcon,
   SCircularProgress,
+  SClearIcon,
   SIconButton,
+  SSeachResultsContainer,
+  SSearchBarContainer,
+  SSearchIcon,
+  SSearchInput,
   SSearchResults,
 } from "./styles";
-import { fetchAssets } from "../../api/rest-api";
 
+import { fetchAssets } from "../../api/rest-api";
 import { useQuery } from "@tanstack/react-query";
 
 export const SearchBar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef();
 
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
   const isNotEmpty = useMemo(() => searchQuery.length > 0, [searchQuery]);
@@ -39,6 +42,7 @@ export const SearchBar: React.FC = () => {
   return (
     <SSearchBarContainer>
       <SSearchInput
+        ref={searchInputRef}
         onChange={handleChangeSearchQuery}
         placeholder="Search"
         fullWidth
@@ -56,10 +60,19 @@ export const SearchBar: React.FC = () => {
           </>
         }
       />
-      <SSearchResults>
-        {/* {data.map((data, index) => ( // TODO: type api correctly handles this
+      <SSearchResults
+        anchorEl={searchInputRef.current}
+        open={Boolean(searchInputRef.current) && true}
+        container={searchInputRef.current}
+      >
+        <SSeachResultsContainer>
+          {[0, 1, 2, 3, 4, 5, 6].map((number) => (
+            <div key={number}>{number}</div>
+          ))}
+          {/* {data.map((data, index) => ( // TODO: type api correctly handles this
           <div key={index}>{data}</div>
         ))} */}
+        </SSeachResultsContainer>
       </SSearchResults>
     </SSearchBarContainer>
   );

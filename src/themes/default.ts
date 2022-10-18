@@ -67,7 +67,7 @@ export const getThemeByMode = (
             },
             background: {
               default: "#202a40",
-              paper: "#254057",
+              // paper: "#254057",// TODO: review this change
             },
             info: {
               main: "#27618f",
