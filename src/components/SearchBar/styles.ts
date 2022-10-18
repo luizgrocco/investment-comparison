@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { OutlinedInput, Grid } from "@mui/material";
+import {
+  OutlinedInput,
+  Grid,
+  CircularProgress,
+  IconButton,
+} from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -9,7 +14,10 @@ export const SSearchBarContainer = styled(Grid)`
 `;
 
 export const SSearchInput = styled(OutlinedInput)`
-  background-color: #dddddd; /* TODO: add color in theme for this */
+  background-color: ${({ theme }) =>
+    theme.palette.mode === "light"
+      ? "#dddddd"
+      : "#222222"}; /* TODO: add color in theme for this */
   padding-left: 1%;
   padding-right: 1%;
 
@@ -20,6 +28,23 @@ export const SSearchInput = styled(OutlinedInput)`
   }
 `;
 
+export const SIconButton = styled(IconButton)`
+  color: inherit;
+`;
+
 export const SClearIcon = styled(ClearIcon)``;
 
 export const SSearchIcon = styled(SearchIcon)``;
+
+export const SCircularProgress = styled(CircularProgress).attrs(() => ({
+  size: 20,
+}))`
+  margin-right: 10px;
+`;
+
+export const SSearchResults = styled(Grid)`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  widht: 100%;
+`;
