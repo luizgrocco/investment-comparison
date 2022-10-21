@@ -1,16 +1,19 @@
 import React from "react";
 import reportWebVitals from "./reportWebVitals";
-import { createRoot } from "react-dom/client";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
 import AppInitializer from "./AppInitializer";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { render } from "react-dom";
 
-const root = createRoot(document.getElementById("root") as HTMLElement);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { staleTime: 24 * 60 * 60 * 1000 },
+  },
+});
 
-root.render(
+render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
@@ -18,7 +21,8 @@ root.render(
         <AppInitializer />
       </ReduxProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

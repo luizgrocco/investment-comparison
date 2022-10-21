@@ -15,8 +15,8 @@ import {
   SSearchInput,
   SSearchResults,
 } from "./styles";
+import { fetchSearchAssets } from "../../api/rest-api";
 
-import { fetchAssets } from "../../api/rest-api";
 import { useQuery } from "@tanstack/react-query";
 
 export const SearchBar: React.FC = () => {
@@ -26,9 +26,14 @@ export const SearchBar: React.FC = () => {
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
   const isNotEmpty = useMemo(() => searchQuery.length > 0, [searchQuery]);
 
-  const { isLoading } = useQuery(["searchBarText", searchQuery], fetchAssets, {
-    enabled: isEnabled,
-  });
+  const { isLoading } = useQuery(
+    ["searchBarText", searchQuery],
+    fetchSearchAssets,
+    {
+      staleTime: 24 * 60 * 60 * 1000,
+      enabled: isEnabled,
+    }
+  );
 
   const handleChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (
     event
