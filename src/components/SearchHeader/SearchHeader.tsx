@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+
 import {
   SCircularProgress,
   SClearIcon,
@@ -14,19 +15,21 @@ import {
   SSearchIcon,
   SSearchInput,
   SSearchResults,
+  SCategorySeparatorLine,
 } from "./styles";
-import { fetchSearchAssets } from "../../api/rest-api";
+import { Asset } from "./Asset/Asset";
 
 import { useQuery } from "@tanstack/react-query";
+import { fetchSearchAssets, AssetCategoryEnum } from "../../api/rest-api";
 
-export const SearchBar: React.FC = () => {
+export const SearchHeader: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
 
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
   const isNotEmpty = useMemo(() => searchQuery.length > 0, [searchQuery]);
 
-  const { isLoading } = useQuery(
+  const { data, isLoading, isSuccess } = useQuery(
     ["searchBarText", searchQuery],
     fetchSearchAssets,
     {
@@ -67,16 +70,26 @@ export const SearchBar: React.FC = () => {
       />
       <SSearchResults
         anchorEl={searchInputRef.current}
-        open={Boolean(searchInputRef.current) && true}
+        open={Boolean(searchInputRef.current) && isEnabled}
         container={searchInputRef.current}
       >
         <SSeachResultsContainer>
-          {[0, 1, 2, 3, 4, 5, 6].map((number) => (
-            <div key={number}>{number}</div>
-          ))}
-          {/* {data.map((data, index) => ( // TODO: type api correctly handles this
-          <div key={index}>{data}</div>
-        ))} */}
+          {isLoading && !isSuccess && <SCircularProgress />}
+          {isSuccess && !isLoading
+            ? Object.entries(data).map(([assetCategory, assets]) => (
+                <React.Fragment key={assetCategory}>
+                  <SCategorySeparatorLine
+                    assetCategory={assetCategory as AssetCategoryEnum}
+                  >
+                    {/* TODO: TRANSLATION using the assetCategory as key */}
+                    {assetCategory}
+                  </SCategorySeparatorLine>
+                  {assets.map((asset) => (
+                    <Asset key={asset.label} asset={asset} />
+                  ))}
+                </React.Fragment>
+              ))
+            : null}
         </SSeachResultsContainer>
       </SSearchResults>
     </SSearchBarContainer>

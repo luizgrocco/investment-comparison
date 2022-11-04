@@ -14,7 +14,7 @@ import {
   ShareLinkButton,
   ShareQrCodeButton,
   GlobalSettingsSlider,
-  SearchBar,
+  SearchHeader,
 } from "../../components";
 
 export const Analysis: React.FC = () => {
@@ -38,7 +38,7 @@ export const Analysis: React.FC = () => {
         </SConfigurationSecondRow>
       </SConfigurationContainer>
       <SSearchContainer>
-        <SearchBar />
+        <SearchHeader />
       </SSearchContainer>
     </SPageContainer>
   );

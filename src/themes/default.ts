@@ -27,6 +27,14 @@ export const getThemeByMode = (
       "#4B4B4B",
       "#81C25C",
     ],
+    assetCategoryColors: {
+      ACAO: "#F09C62",
+      FUNDO: "#604AF0",
+      EUROPA: "#604AF0",
+      RENDA_FIXA: "#BE56F0",
+      PREVIDENCIA: "#32A32A",
+      BENCHMARK_PERSONALIZADO: "#3E85F0",
+    },
     palette: {
       mode,
       ...(mode === "light"
