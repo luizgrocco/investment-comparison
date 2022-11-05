@@ -102,9 +102,9 @@ export const SCategorySeparatorLine = styled(
     line-height: 16px;
     border-bottom: 1px solid
       ${({ assetCategory: assetCategory, theme }) =>
-        theme.assetTypeColors[assetCategory]};
+        theme.assetCategoryColors[assetCategory]};
     color: ${({ assetCategory: assetCategory, theme }) =>
-      theme.assetTypeColors[assetCategory]};
+      theme.assetCategoryColors[assetCategory]};
     margin-bottom: 6px;
   }
 `;

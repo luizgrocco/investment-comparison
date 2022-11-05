@@ -20,7 +20,8 @@ import {
 import { Asset } from "./Asset/Asset";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchSearchAssets, AssetCategoryEnum } from "../../api/rest-api";
+import { fetchSearchAssets } from "../../api/rest-api";
+import { toPairs } from "ramda";
 
 export const SearchHeader: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,8 +34,8 @@ export const SearchHeader: React.FC = () => {
     ["searchBarText", searchQuery],
     fetchSearchAssets,
     {
-      staleTime: 24 * 60 * 60 * 1000,
       enabled: isEnabled,
+      cacheTime: 1 * 60 * 1000,
     }
   );
 
@@ -74,22 +75,22 @@ export const SearchHeader: React.FC = () => {
         container={searchInputRef.current}
       >
         <SSeachResultsContainer>
-          {isLoading && !isSuccess && <SCircularProgress />}
-          {isSuccess && !isLoading
-            ? Object.entries(data).map(([assetCategory, assets]) => (
-                <React.Fragment key={assetCategory}>
-                  <SCategorySeparatorLine
-                    assetCategory={assetCategory as AssetCategoryEnum}
-                  >
-                    {/* TODO: TRANSLATION using the assetCategory as key */}
-                    {assetCategory}
-                  </SCategorySeparatorLine>
-                  {assets.map((asset) => (
-                    <Asset key={asset.identifier} asset={asset} />
-                  ))}
-                </React.Fragment>
-              ))
-            : null}
+          {/* {isLoading && !isSuccess && } */}
+          {isSuccess && !isLoading ? (
+            toPairs(data).map(([assetCategory, assets]) => (
+              <React.Fragment key={assetCategory}>
+                <SCategorySeparatorLine assetCategory={assetCategory}>
+                  {/* TODO: TRANSLATION using the assetCategory as key */}
+                  {assetCategory}
+                </SCategorySeparatorLine>
+                {assets?.map((asset) => (
+                  <Asset key={asset.identifier} asset={asset} />
+                ))}
+              </React.Fragment>
+            ))
+          ) : (
+            <SCircularProgress />
+          )}
         </SSeachResultsContainer>
       </SSearchResults>
     </SSearchBarContainer>
