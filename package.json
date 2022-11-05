@@ -15,7 +15,8 @@
     "prettier": "prettier --check 'src/**/*.{js,jsx,ts,tsx,css,scss,sass}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,scss,sass}'",
     "ts": "tsc",
-    "isready": "npm run prettier && npm run lint && npm run ts && npm run build"
+    "isready": "npm run prettier && npm run lint && npm run ts && npm run build",
+    "precommit": "npm run prettier && npm run lint"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",

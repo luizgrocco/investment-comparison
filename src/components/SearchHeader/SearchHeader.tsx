@@ -85,7 +85,7 @@ export const SearchHeader: React.FC = () => {
                     {assetCategory}
                   </SCategorySeparatorLine>
                   {assets.map((asset) => (
-                    <Asset key={asset.label} asset={asset} />
+                    <Asset key={asset.identifier} asset={asset} />
                   ))}
                 </React.Fragment>
               ))
