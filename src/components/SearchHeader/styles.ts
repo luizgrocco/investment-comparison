@@ -89,7 +89,7 @@ export const SSeachResultsContainer = styled(Grid)`
 `;
 
 interface SCategorySeparatorLineType {
-  assetCategory: AssetCategoryEnum;
+  $assetCategory: AssetCategoryEnum;
 }
 
 export const SCategorySeparatorLine = styled(
@@ -101,10 +101,10 @@ export const SCategorySeparatorLine = styled(
     font-size: 12px;
     line-height: 16px;
     border-bottom: 1px solid
-      ${({ assetCategory: assetCategory, theme }) =>
-        theme.assetCategoryColors[assetCategory]};
-    color: ${({ assetCategory: assetCategory, theme }) =>
-      theme.assetCategoryColors[assetCategory]};
+      ${({ $assetCategory, theme }) =>
+        theme.assetCategoryColors[$assetCategory]};
+    color: ${({ $assetCategory, theme }) =>
+      theme.assetCategoryColors[$assetCategory]};
     margin-bottom: 6px;
   }
 `;
