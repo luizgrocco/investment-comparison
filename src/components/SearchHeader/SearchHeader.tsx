@@ -18,10 +18,10 @@ import {
   SCategorySeparatorLine,
 } from "./styles";
 import { Asset } from "./Asset/Asset";
+import { toPairs } from "ramda";
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchSearchAssets } from "../../api/rest-api";
-import { toPairs } from "ramda";
 
 export const SearchHeader: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -79,7 +79,7 @@ export const SearchHeader: React.FC = () => {
           {isSuccess && !isLoading ? (
             toPairs(data).map(([assetCategory, assets]) => (
               <React.Fragment key={assetCategory}>
-                <SCategorySeparatorLine assetCategory={assetCategory}>
+                <SCategorySeparatorLine $assetCategory={assetCategory}>
                   {/* TODO: TRANSLATION using the assetCategory as key */}
                   {assetCategory}
                 </SCategorySeparatorLine>
