@@ -1,19 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import type { RootState } from "../store";
+import { AssetType } from "./../../api/rest-api";
 
-// FIXME: Decide on Portfolio's data structure
-// interface Portfolio {
-//   assets:
-// }
+interface PortfolioType {
+  assets: AssetType[];
+}
 
 // Define a type for the slice state
 interface PortfoliosState {
-  portfolios: [];
+  userPortfolios: PortfolioType[];
+  defaultPortfolio: PortfolioType;
 }
 
 // Define the initial state using that type
 const initialState: PortfoliosState = {
-  portfolios: [],
+  userPortfolios: [],
+  defaultPortfolio: { assets: [] },
 };
 
 export const portfoliosSlice = createSlice({
@@ -21,12 +23,12 @@ export const portfoliosSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // setThemeMode: (state, action: PayloadAction<ThemeState["mode"]>) => {
-    //   state.mode = action.payload;
-    // },
-    // TODO: Add actions
-    // addAssetToPortfolio
+    addAssetToDefaultPortfolio: (state, action: PayloadAction<AssetType>) => {
+      state.defaultPortfolio.assets.push(action.payload);
+    },
   },
 });
+
+export const { addAssetToDefaultPortfolio } = portfoliosSlice.actions;
 
 export default portfoliosSlice.reducer;
