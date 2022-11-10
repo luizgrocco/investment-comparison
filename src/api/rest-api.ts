@@ -22,7 +22,7 @@ const assetCategoryEnum = z.enum([
 export type AssetCategoryEnum = z.infer<typeof assetCategoryEnum>;
 
 const searchAssetSchema = z.object({
-  assetCategory: z.string().nullable().default(null),
+  assetCategory: assetCategoryEnum.nullable().default(null),
   cnpj: z.string().nullable().default(null),
   identifier: z.string().nullable().default(null),
   isin: z.string().nullable().default(null),

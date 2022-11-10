@@ -75,7 +75,6 @@ export const SearchHeader: React.FC = () => {
         container={searchInputRef.current}
       >
         <SSeachResultsContainer>
-          {/* {isLoading && !isSuccess && } */}
           {isSuccess && !isLoading ? (
             toPairs(data).map(([assetCategory, assets]) => (
               <React.Fragment key={assetCategory}>
@@ -84,7 +83,11 @@ export const SearchHeader: React.FC = () => {
                   {assetCategory}
                 </SCategorySeparatorLine>
                 {assets?.map((asset) => (
-                  <Asset key={asset.identifier} asset={asset} />
+                  <Asset
+                    key={asset.identifier}
+                    asset={asset}
+                    assetCategory={assetCategory}
+                  />
                 ))}
               </React.Fragment>
             ))
