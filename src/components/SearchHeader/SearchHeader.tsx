@@ -15,6 +15,7 @@ import {
   SSearchIcon,
   SSearchInput,
   SSearchResults,
+  SCategoriesContainer,
   SCategorySeparatorLine,
 } from "./styles";
 import { Asset } from "./Asset/Asset";
@@ -71,29 +72,27 @@ export const SearchHeader: React.FC = () => {
       />
       <SSearchResults
         anchorEl={searchInputRef.current}
-        open={Boolean(searchInputRef.current) && isEnabled}
+        open={Boolean(searchInputRef.current) && isEnabled && isSuccess}
         container={searchInputRef.current}
       >
         <SSeachResultsContainer>
-          {isSuccess && !isLoading ? (
-            toPairs(data).map(([assetCategory, assets]) => (
-              <React.Fragment key={assetCategory}>
-                <SCategorySeparatorLine $assetCategory={assetCategory}>
-                  {/* TODO: TRANSLATION using the assetCategory as key */}
-                  {assetCategory}
-                </SCategorySeparatorLine>
-                {assets?.map((asset) => (
-                  <Asset
-                    key={asset.identifier}
-                    asset={asset}
-                    assetCategory={assetCategory}
-                  />
-                ))}
-              </React.Fragment>
-            ))
-          ) : (
-            <SCircularProgress />
-          )}
+          {isSuccess && !isLoading
+            ? toPairs(data).map(([assetCategory, assets]) => (
+                <SCategoriesContainer key={assetCategory}>
+                  <SCategorySeparatorLine $assetCategory={assetCategory}>
+                    {/* TODO: TRANSLATION using the assetCategory as key */}
+                    {assetCategory}
+                  </SCategorySeparatorLine>
+                  {assets?.map((asset) => (
+                    <Asset
+                      key={asset.identifier}
+                      asset={asset}
+                      assetCategory={assetCategory}
+                    />
+                  ))}
+                </SCategoriesContainer>
+              ))
+            : null}
         </SSeachResultsContainer>
       </SSearchResults>
     </SSearchBarContainer>

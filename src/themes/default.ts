@@ -75,7 +75,6 @@ export const getThemeByMode = (
             },
             background: {
               default: "#202a40",
-              // paper: "#254057",// TODO: review this change
             },
             info: {
               main: "#27618f",
@@ -89,14 +88,10 @@ export const getThemeByMode = (
 
   const themeDerivedFromLiteral = createTheme(themeOnlyLiterals, {
     components: {
+      // Example of Global Override:
       MuiButton: {
         styleOverrides: {
-          root: {
-            "&:hover": {
-              // backgroundColor: theme.palette.primary.main,
-              // color: theme.palette.primary.contrastText,
-            },
-          },
+          root: {},
         },
       },
     },

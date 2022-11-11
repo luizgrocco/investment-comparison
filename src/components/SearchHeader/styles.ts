@@ -88,6 +88,14 @@ export const SSeachResultsContainer = styled(Grid)`
   }
 `;
 
+export const SCategoriesContainer = styled(Grid)`
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 interface SCategorySeparatorLineType {
   $assetCategory: AssetCategoryEnum;
 }
