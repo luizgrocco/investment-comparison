@@ -9,13 +9,13 @@ export const AssetContainer = styled(Grid)`
   /* TODO: Try percentages instead of raw px values */
   min-height: 52px;
   /* TODO: Themify this color (dark mode specially) */
-  outline: rgb(248, 249, 250) solid 1px;
+  /* outline: rgb(248, 249, 250) solid 1px; */
   padding: 8px 0;
 
   &:hover {
     cursor: pointer;
-    /* TODO: Themify this color (dark mode specially) */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px
+      ${({ theme }) => theme.palette.primary.contrastText};
     outline: none;
   }
 `;

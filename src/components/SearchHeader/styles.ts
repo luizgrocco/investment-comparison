@@ -66,6 +66,7 @@ export const SSeachResultsContainer = styled(Grid)`
   overflow-y: auto;
   padding: 16px;
   border-radius: 8px;
+  /* TODO: Themify the following colors */
   border: 1px solid rgba(51, 51, 51, 0.4);
   box-shadow: 3px 3px black
 
