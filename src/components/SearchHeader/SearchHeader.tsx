@@ -10,23 +10,32 @@ import {
   SCircularProgress,
   SClearIcon,
   SIconButton,
-  SSeachResultsContainer,
+  SSearchResultsContainer,
   SSearchBarContainer,
   SSearchIcon,
   SSearchInput,
   SSearchResults,
   SCategoriesContainer,
   SCategorySeparatorLine,
+  SAssetsContainer,
+  SAssetChipItem,
 } from "./styles";
-import { Asset } from "./Asset/Asset";
+import { AssetSearchItem } from "./Asset/AssetSearchItem";
 import { toPairs } from "ramda";
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchSearchAssets } from "../../api/rest-api";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  selectAsstesFromDefaultPortfolio,
+  deleteAssetFromDefaultPortfolio,
+} from "../../redux/reducers";
 
 export const SearchHeader: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
+  const selectedAssets = useAppSelector(selectAsstesFromDefaultPortfolio);
 
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
   const isNotEmpty = useMemo(() => searchQuery.length > 0, [searchQuery]);
@@ -48,6 +57,12 @@ export const SearchHeader: React.FC = () => {
 
   const handleClearClick: MouseEventHandler<HTMLButtonElement> = (): void =>
     setSearchQuery("");
+
+  const handleDeleteAsset = (id: string | null): void => {
+    if (id !== null) {
+      dispatch(deleteAssetFromDefaultPortfolio(id));
+    }
+  };
 
   return (
     <SSearchBarContainer>
@@ -74,8 +89,12 @@ export const SearchHeader: React.FC = () => {
         anchorEl={searchInputRef.current}
         open={Boolean(searchInputRef.current) && isEnabled && isSuccess}
         container={searchInputRef.current}
+        // TODO: Properly type this
+        // onHover={(event: MouseEvent) => {
+        //   event.stopPropagation();
+        // }}
       >
-        <SSeachResultsContainer>
+        <SSearchResultsContainer>
           {isSuccess && !isLoading
             ? toPairs(data).map(([assetCategory, assets]) => (
                 <SCategoriesContainer key={assetCategory}>
@@ -84,7 +103,7 @@ export const SearchHeader: React.FC = () => {
                     {assetCategory}
                   </SCategorySeparatorLine>
                   {assets?.map((asset) => (
-                    <Asset
+                    <AssetSearchItem
                       key={asset.identifier}
                       asset={asset}
                       assetCategory={assetCategory}
@@ -93,8 +112,17 @@ export const SearchHeader: React.FC = () => {
                 </SCategoriesContainer>
               ))
             : null}
-        </SSeachResultsContainer>
+        </SSearchResultsContainer>
       </SSearchResults>
+      <SAssetsContainer>
+        {selectedAssets.map((asset) => (
+          <SAssetChipItem
+            key={asset.identifier}
+            label={asset.label}
+            onDelete={() => handleDeleteAsset(asset.identifier)}
+          />
+        ))}
+      </SAssetsContainer>
     </SSearchBarContainer>
   );
 };

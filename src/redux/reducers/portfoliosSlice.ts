@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import type { RootState } from "../store";
+import type { RootState } from "../store";
 import { AssetType } from "./../../api/rest-api";
 
 interface PortfolioType {
@@ -26,9 +26,24 @@ export const portfoliosSlice = createSlice({
     addAssetToDefaultPortfolio: (state, action: PayloadAction<AssetType>) => {
       state.defaultPortfolio.assets.push(action.payload);
     },
+    deleteAssetFromDefaultPortfolio: (
+      state,
+      action: PayloadAction<AssetType["identifier"]>
+    ) => {
+      const newAssets = state.defaultPortfolio.assets.filter(
+        (asset) => asset.identifier !== action.payload
+      );
+      state.defaultPortfolio.assets = newAssets;
+    },
   },
 });
 
-export const { addAssetToDefaultPortfolio } = portfoliosSlice.actions;
+export const selectAsstesFromDefaultPortfolio = (
+  state: RootState
+): PortfoliosState["defaultPortfolio"]["assets"] =>
+  state.portfolios.defaultPortfolio.assets;
+
+export const { addAssetToDefaultPortfolio, deleteAssetFromDefaultPortfolio } =
+  portfoliosSlice.actions;
 
 export default portfoliosSlice.reducer;

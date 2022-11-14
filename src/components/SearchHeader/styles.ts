@@ -1,4 +1,5 @@
 import {
+  Chip,
   CircularProgress,
   Grid,
   IconButton,
@@ -16,6 +17,7 @@ import styled from "styled-components";
 export const SSearchBarContainer = styled(Grid)`
   display: flex;
   width: 100%;
+  flex-direction: column;
 `;
 
 export const SSearchInput = styled(OutlinedInput)`
@@ -53,7 +55,7 @@ export const SSearchResults = styled(Popper).attrs(() => ({
   width: 100%;
 `;
 
-export const SSeachResultsContainer = styled(Grid)`
+export const SSearchResultsContainer = styled(Grid)`
   background-color: ${({ theme }) =>
     theme.palette.mode === "light"
       ? "white"
@@ -117,3 +119,16 @@ export const SCategorySeparatorLine = styled(
     margin-bottom: 6px;
   }
 `;
+
+export const SAssetsContainer = styled(Grid)`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+export const SAssetChipItem = styled(Chip).attrs(() => ({
+  variant: "outlined",
+}))``;

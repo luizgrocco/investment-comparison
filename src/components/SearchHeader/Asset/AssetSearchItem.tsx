@@ -1,9 +1,9 @@
 import React from "react";
-import { AssetContainer, SColorBar, SAssetLabel } from "./styles";
+import { SAssetContainer, SColorBar, SAssetLabel } from "./styles";
 
 import { AssetCategoryEnum, AssetType } from "../../../api/rest-api";
 
-import { addAssetToDefaultPortfolio } from "./../../../redux/reducers";
+import { addAssetToDefaultPortfolio } from "../../../redux/reducers";
 import { useAppDispatch } from "../../../redux/hooks";
 
 interface AssetComponentType {
@@ -11,7 +11,7 @@ interface AssetComponentType {
   assetCategory: AssetCategoryEnum;
 }
 
-export const Asset: React.FC<AssetComponentType> = ({
+export const AssetSearchItem: React.FC<AssetComponentType> = ({
   asset,
   assetCategory,
 }) => {
@@ -22,9 +22,9 @@ export const Asset: React.FC<AssetComponentType> = ({
   };
 
   return (
-    <AssetContainer onClick={addAsset}>
+    <SAssetContainer onClick={addAsset}>
       <SColorBar $assetCategory={assetCategory} />
       <SAssetLabel>{asset.label}</SAssetLabel>
-    </AssetContainer>
+    </SAssetContainer>
   );
 };

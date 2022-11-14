@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Grid, Typography } from "@mui/material";
 import { AssetCategoryEnum } from "../../../api/rest-api";
 
-export const AssetContainer = styled(Grid)`
+export const SAssetContainer = styled(Grid)`
   display: flex;
   flex-direction: row;
   width: 100%;
