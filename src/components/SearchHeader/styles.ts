@@ -53,6 +53,7 @@ export const SSearchResults = styled(Popper).attrs(() => ({
   placement: "bottom-start",
 }))`
   width: 100%;
+  z-index: 40;
 `;
 
 export const SSearchResultsContainer = styled(Grid)`
@@ -127,8 +128,26 @@ export const SAssetsContainer = styled(Grid)`
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 14px;
+  gap: 14px;
 `;
 
 export const SAssetChipItem = styled(Chip).attrs(() => ({
   variant: "outlined",
-}))``;
+}))`
+  font-weight: 700;
+  height: 37px;
+`;
+
+interface SColorBarPropsType {
+  $assetCategory: AssetCategoryEnum;
+}
+
+export const SColorBar = styled(Typography)<SColorBarPropsType>`
+   {
+    background-color: ${({ $assetCategory, theme }) =>
+      theme.assetCategoryColors[$assetCategory]};
+    min-width: 4px;
+    height: 16px;
+  }
+`;

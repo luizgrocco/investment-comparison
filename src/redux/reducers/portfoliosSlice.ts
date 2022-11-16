@@ -35,6 +35,9 @@ export const portfoliosSlice = createSlice({
       );
       state.defaultPortfolio.assets = newAssets;
     },
+    deleteAllAssetsFromDefaultPortfolio: (state) => {
+      state.defaultPortfolio.assets = [];
+    },
   },
 });
 
@@ -43,7 +46,10 @@ export const selectAsstesFromDefaultPortfolio = (
 ): PortfoliosState["defaultPortfolio"]["assets"] =>
   state.portfolios.defaultPortfolio.assets;
 
-export const { addAssetToDefaultPortfolio, deleteAssetFromDefaultPortfolio } =
-  portfoliosSlice.actions;
+export const {
+  addAssetToDefaultPortfolio,
+  deleteAssetFromDefaultPortfolio,
+  deleteAllAssetsFromDefaultPortfolio,
+} = portfoliosSlice.actions;
 
 export default portfoliosSlice.reducer;

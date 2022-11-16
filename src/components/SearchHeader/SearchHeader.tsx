@@ -19,6 +19,7 @@ import {
   SCategorySeparatorLine,
   SAssetsContainer,
   SAssetChipItem,
+  SColorBar,
 } from "./styles";
 import { AssetSearchItem } from "./Asset/AssetSearchItem";
 import { toPairs } from "ramda";
@@ -29,6 +30,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectAsstesFromDefaultPortfolio,
   deleteAssetFromDefaultPortfolio,
+  deleteAllAssetsFromDefaultPortfolio,
 } from "../../redux/reducers";
 
 export const SearchHeader: React.FC = () => {
@@ -64,6 +66,13 @@ export const SearchHeader: React.FC = () => {
     }
   };
 
+  // TODO: make this work
+  // const handleOnHover: React.MouseEventHandler<HTMLDivElement> = (
+  //   event
+  // ): void => {
+  //   event.stopPropagation();
+  // };
+
   return (
     <SSearchBarContainer>
       <SSearchInput
@@ -89,10 +98,6 @@ export const SearchHeader: React.FC = () => {
         anchorEl={searchInputRef.current}
         open={Boolean(searchInputRef.current) && isEnabled && isSuccess}
         container={searchInputRef.current}
-        // TODO: Properly type this
-        // onHover={(event: MouseEvent) => {
-        //   event.stopPropagation();
-        // }}
       >
         <SSearchResultsContainer>
           {isSuccess && !isLoading
