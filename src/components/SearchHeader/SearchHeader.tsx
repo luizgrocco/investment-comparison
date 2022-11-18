@@ -18,17 +18,27 @@ import {
   SCategoriesContainer,
   SCategorySeparatorLine,
   SAssetsContainer,
-  SAssetChipItem,
+  SAssetItem,
   SColorBar,
+  SAssetLabel,
+  SDeleteAllAssetsButton,
+  SDeleteLabel,
+  SDeleteAssetButton,
+  SDeleteAssetIcon,
 } from "./styles";
 import { AssetSearchItem } from "./Asset/AssetSearchItem";
 import { toPairs } from "ramda";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchSearchAssets } from "../../api/rest-api";
+import {
+  AssetCategoryEnum,
+  AssetType,
+  fetchSearchAssets,
+} from "../../api/rest-api";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectAsstesFromDefaultPortfolio,
+  addAssetToDefaultPortfolio,
   deleteAssetFromDefaultPortfolio,
   deleteAllAssetsFromDefaultPortfolio,
 } from "../../redux/reducers";
@@ -40,7 +50,11 @@ export const SearchHeader: React.FC = () => {
   const selectedAssets = useAppSelector(selectAsstesFromDefaultPortfolio);
 
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
-  const isNotEmpty = useMemo(() => searchQuery.length > 0, [searchQuery]);
+  const searchQueryNotEmpty = useMemo(
+    () => searchQuery.length > 0,
+    [searchQuery]
+  );
+  const hasAssets = useMemo(() => selectedAssets.length > 0, [selectedAssets]);
 
   const { data, isLoading, isSuccess } = useQuery(
     ["searchBarText", searchQuery],
@@ -60,13 +74,20 @@ export const SearchHeader: React.FC = () => {
   const handleClearClick: MouseEventHandler<HTMLButtonElement> = (): void =>
     setSearchQuery("");
 
-  const handleDeleteAsset = (id: string | null): void => {
-    if (id !== null) {
-      dispatch(deleteAssetFromDefaultPortfolio(id));
-    }
+  const handleDeleteAsset = (id: string | null) => (): void => {
+    dispatch(deleteAssetFromDefaultPortfolio(id));
   };
 
-  // TODO: make this work
+  const handleDeleteAllAssets = (): void => {
+    dispatch(deleteAllAssetsFromDefaultPortfolio());
+  };
+
+  const handleAddAsset = (asset: AssetType) => (): void => {
+    dispatch(addAssetToDefaultPortfolio(asset));
+    setSearchQuery("");
+  };
+
+  // TODO: Prevent input from highlighting when assets are hovered
   // const handleOnHover: React.MouseEventHandler<HTMLDivElement> = (
   //   event
   // ): void => {
@@ -86,7 +107,7 @@ export const SearchHeader: React.FC = () => {
         endAdornment={
           <>
             {isLoading && isEnabled && <SCircularProgress />}
-            {isNotEmpty && (
+            {searchQueryNotEmpty && (
               <SIconButton onClick={handleClearClick}>
                 <SClearIcon />
               </SIconButton>
@@ -112,6 +133,7 @@ export const SearchHeader: React.FC = () => {
                       key={asset.identifier}
                       asset={asset}
                       assetCategory={assetCategory}
+                      handler={handleAddAsset(asset)}
                     />
                   ))}
                 </SCategoriesContainer>
@@ -121,12 +143,20 @@ export const SearchHeader: React.FC = () => {
       </SSearchResults>
       <SAssetsContainer>
         {selectedAssets.map((asset) => (
-          <SAssetChipItem
-            key={asset.identifier}
-            label={asset.label}
-            onDelete={() => handleDeleteAsset(asset.identifier)}
-          />
+          <SAssetItem key={asset.identifier}>
+            {/* FIXME: THIS CASTING IS ABSOLUTELY WRONG, BECAUSE ASSET TYPES CAN BE "FI" OR "FII" for example */}
+            <SColorBar $assetCategory={asset.assetType as AssetCategoryEnum} />
+            <SAssetLabel>{asset.label}</SAssetLabel>
+            <SDeleteAssetButton onClick={handleDeleteAsset(asset.identifier)}>
+              <SDeleteAssetIcon />
+            </SDeleteAssetButton>
+          </SAssetItem>
         ))}
+        {hasAssets && (
+          <SDeleteAllAssetsButton onClick={handleDeleteAllAssets}>
+            <SDeleteLabel>Limpar todos</SDeleteLabel>
+          </SDeleteAllAssetsButton>
+        )}
       </SAssetsContainer>
     </SSearchBarContainer>
   );

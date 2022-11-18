@@ -41,5 +41,3 @@ export const SAssetLabel = styled(Typography)`
   font-size: 14px;
   line-height: 16px;
 `;
-
-// color: ${({ theme }) => theme.colors.textDefault};

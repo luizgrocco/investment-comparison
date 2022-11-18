@@ -22,7 +22,7 @@ const assetCategoryEnum = z.enum([
 export type AssetCategoryEnum = z.infer<typeof assetCategoryEnum>;
 
 const searchAssetSchema = z.object({
-  assetCategory: assetCategoryEnum.nullable().default(null),
+  assetType: z.string().nullable().default(null),
   cnpj: z.string().nullable().default(null),
   identifier: z.string().nullable().default(null),
   isin: z.string().nullable().default(null),
@@ -49,6 +49,7 @@ export const fetchSearchAssets = (
     .get(`asset?${stringify({ searchString })}`, {
       signal,
     })
+    // TODO: Inject the assetCategory into asset data before returning
     .then((res) => fetchSearchAssetsSchema.parse(res.data));
   return response;
 };

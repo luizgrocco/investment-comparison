@@ -1,5 +1,6 @@
+import styled from "styled-components";
 import {
-  Chip,
+  Button,
   CircularProgress,
   Grid,
   IconButton,
@@ -7,12 +8,11 @@ import {
   Popper,
   Typography,
 } from "@mui/material";
-
-import { AssetCategoryEnum } from "../../api/rest-api";
-
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
-import styled from "styled-components";
+import CancelIcon from "@mui/icons-material/Cancel";
+
+import { AssetCategoryEnum } from "../../api/rest-api";
 
 export const SSearchBarContainer = styled(Grid)`
   display: flex;
@@ -64,8 +64,8 @@ export const SSearchResultsContainer = styled(Grid)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-height: 50vh;
   margin-top: 10px;
-  max-height: 80vh;
   overflow-y: auto;
   padding: 16px;
   border-radius: 8px;
@@ -132,11 +132,13 @@ export const SAssetsContainer = styled(Grid)`
   gap: 14px;
 `;
 
-export const SAssetChipItem = styled(Chip).attrs(() => ({
-  variant: "outlined",
+export const SAssetItem = styled(Button).attrs(() => ({
+  variant: "contained",
 }))`
-  font-weight: 700;
   height: 37px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: default;
 `;
 
 interface SColorBarPropsType {
@@ -150,4 +152,41 @@ export const SColorBar = styled(Typography)<SColorBarPropsType>`
     min-width: 4px;
     height: 16px;
   }
+`;
+
+export const SAssetLabel = styled(Typography)`
+  margin: 0 10px;
+  text-transform: none;
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+export const SDeleteAllAssetsButton = styled(Button).attrs(({ theme }) => ({
+  variant: theme.palette.mode === "light" ? "outlined" : "contained",
+  color: "error",
+}))`
+  height: 37px;
+  padding: 6px 12px;
+
+  /* TODO: Sort this situation */
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.palette.mode === "light" ? theme.palette.error.main : "none"};
+    color: #ffffff;
+  }
+`;
+
+export const SDeleteLabel = styled(Typography)`
+  text-transform: none;
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+export const SDeleteAssetButton = styled(IconButton)`
+  color: inherit;
+  padding: 0;
+`;
+
+export const SDeleteAssetIcon = styled(CancelIcon)`
+  font-size: 18px;
 `;

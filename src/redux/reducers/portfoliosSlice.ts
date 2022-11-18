@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { AssetType } from "./../../api/rest-api";
+import { includes, not } from "ramda";
 
 interface PortfolioType {
   assets: AssetType[];
@@ -24,7 +25,9 @@ export const portfoliosSlice = createSlice({
   initialState,
   reducers: {
     addAssetToDefaultPortfolio: (state, action: PayloadAction<AssetType>) => {
-      state.defaultPortfolio.assets.push(action.payload);
+      const asset = action.payload;
+      if (not(includes(asset, state.defaultPortfolio.assets)))
+        state.defaultPortfolio.assets.push(action.payload);
     },
     deleteAssetFromDefaultPortfolio: (
       state,
