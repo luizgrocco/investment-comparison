@@ -4,4 +4,5 @@ export * from "./ShareLinkButton/ShareLinkButton";
 export * from "./ShareQrCodeButton/ShareQrCodeButton";
 export * from "./GlobalSettingsSlider/GlobalSettingsSlider";
 export * from "./ThemeSelectorButton/ThemeSelectorButton";
-export * from "./SearchHeader/SearchHeader";
+export * from "./SearchSection/SearchSection";
+export * from "./ChartConfigurationSection/ChartConfigurationSection";

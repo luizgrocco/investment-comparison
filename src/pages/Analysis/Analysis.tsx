@@ -9,12 +9,14 @@ import {
   SConfigurationSecondRow,
   SSubtitle,
   SSearchContainer,
+  SChartConfigurationContainer,
 } from "./styles";
 import {
   ShareLinkButton,
   ShareQrCodeButton,
   GlobalSettingsSlider,
-  SearchHeader,
+  SearchSection,
+  ChartConfigurationSection,
 } from "../../components";
 
 export const Analysis: React.FC = () => {
@@ -38,8 +40,11 @@ export const Analysis: React.FC = () => {
         </SConfigurationSecondRow>
       </SConfigurationContainer>
       <SSearchContainer>
-        <SearchHeader />
+        <SearchSection />
       </SSearchContainer>
+      <SChartConfigurationContainer>
+        <ChartConfigurationSection />
+      </SChartConfigurationContainer>
     </SPageContainer>
   );
 };

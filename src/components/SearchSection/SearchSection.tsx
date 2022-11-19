@@ -26,7 +26,7 @@ import {
   SDeleteAssetButton,
   SDeleteAssetIcon,
 } from "./styles";
-import { AssetSearchItem } from "./Asset/AssetSearchItem";
+import { AssetSearchItem } from "./AssetSearchItem/AssetSearchItem";
 import { toPairs } from "ramda";
 
 import { useQuery } from "@tanstack/react-query";
@@ -43,7 +43,7 @@ import {
   deleteAllAssetsFromDefaultPortfolio,
 } from "../../redux/reducers";
 
-export const SearchHeader: React.FC = () => {
+export const SearchSection: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
