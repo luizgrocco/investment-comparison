@@ -1,4 +1,5 @@
 import React from "react";
+import "./i18n";
 import reportWebVitals from "./reportWebVitals";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";

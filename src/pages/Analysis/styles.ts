@@ -57,5 +57,4 @@ export const SSearchContainer = styled(Grid)`
 export const SChartConfigurationContainer = styled(Grid)`
   display: flex;
   padding: 0 2%;
-  padding-right: 0;
 `;

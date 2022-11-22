@@ -1,5 +1,4 @@
 /// <reference types="react-scripts" />
-
 import { ThemeOptions, Theme } from "@mui/material/styles";
 import { AssetCategoryEnum } from "./api/rest-api";
 

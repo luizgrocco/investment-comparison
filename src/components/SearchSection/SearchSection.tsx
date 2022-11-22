@@ -42,8 +42,10 @@ import {
   deleteAssetFromDefaultPortfolio,
   deleteAllAssetsFromDefaultPortfolio,
 } from "../../redux/reducers";
+import { useTranslation } from "react-i18next";
 
 export const SearchSection: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
@@ -99,7 +101,7 @@ export const SearchSection: React.FC = () => {
       <SSearchInput
         ref={searchInputRef}
         onChange={handleChangeSearchQuery}
-        placeholder="Search"
+        placeholder={t("searchPlaceholder")}
         fullWidth
         autoFocus
         value={searchQuery}
@@ -125,8 +127,7 @@ export const SearchSection: React.FC = () => {
             ? toPairs(data).map(([assetCategory, assets]) => (
                 <SCategoriesContainer key={assetCategory}>
                   <SCategorySeparatorLine $assetCategory={assetCategory}>
-                    {/* TODO: TRANSLATION using the assetCategory as key */}
-                    {assetCategory}
+                    {t(`assetCategories.${assetCategory}`)}
                   </SCategorySeparatorLine>
                   {assets?.map((asset) => (
                     <AssetSearchItem
@@ -144,7 +145,7 @@ export const SearchSection: React.FC = () => {
       <SAssetsContainer>
         {selectedAssets.map((asset) => (
           <SAssetItem key={asset.identifier}>
-            {/* FIXME: THIS CASTING IS ABSOLUTELY WRONG, BECAUSE ASSET TYPES CAN BE "FI" OR "FII" for example */}
+            {/* FIXME: THIS CASTING IS ABSOLUTELY WRONG, BECAUSE ASSET TYPES CAN BE "FI" OR "FII" for example while AssetCategoryEnum cannot, refactoring is needed*/}
             <SColorBar $assetCategory={asset.assetType as AssetCategoryEnum} />
             <SAssetLabel>{asset.label}</SAssetLabel>
             <SDeleteAssetButton onClick={handleDeleteAsset(asset.identifier)}>
@@ -154,7 +155,7 @@ export const SearchSection: React.FC = () => {
         ))}
         {hasAssets && (
           <SDeleteAllAssetsButton onClick={handleDeleteAllAssets}>
-            <SDeleteLabel>Limpar todos</SDeleteLabel>
+            <SDeleteLabel>{t("clearAll")}</SDeleteLabel>
           </SDeleteAllAssetsButton>
         )}
       </SAssetsContainer>
