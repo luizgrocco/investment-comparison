@@ -4,6 +4,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
 export const SIconButton = styled(IconButton)`
+  align-self: center;
   color: inherit;
 `;
 

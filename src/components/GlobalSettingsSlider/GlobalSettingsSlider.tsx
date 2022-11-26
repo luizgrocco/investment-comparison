@@ -6,7 +6,10 @@ import {
   SSlide,
   SConfigGroupContainer,
 } from "./styles";
-import { ThemeSelectorButton } from "../ThemeSelectorButton/ThemeSelectorButton";
+import {
+  ThemeSelectorButton,
+  LanguageSelectorDropdown,
+} from "./../../components";
 
 export const GlobalSettingsSlider: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +33,7 @@ export const GlobalSettingsSlider: React.FC = () => {
         <SConfigGroupContainer>
           <ThemeSelectorButton />
           {/* <CurrencySelectorDropdown /> */}
-          {/* <LanguageSelectorDropdown /> */}
+          <LanguageSelectorDropdown />
         </SConfigGroupContainer>
       </SSlide>
     </SGlobalSettingsContainer>

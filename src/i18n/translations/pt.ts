@@ -15,5 +15,8 @@ export const pt = {
     },
     qrCodeButtonText: "Gerar QR Code",
     copyLinkButtonText: "Copiar Link",
+    language: "Idioma",
+    english: "Inglês",
+    portuguese: "Português",
   },
 };

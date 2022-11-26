@@ -14,7 +14,9 @@ export const en = {
       BENCHMARK_PERSONALIZADO: "My Assets",
     },
     qrCodeButtonText: "Generate QR Code",
-    copyLinkButtonText: "CopyLink",
+    copyLinkButtonText: "Copy Link",
+    language: "Language",
+    english: "English",
+    portuguese: "Portuguese",
   },
 };
-// FIXME: adicionar traduções faltantes

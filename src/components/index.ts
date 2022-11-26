@@ -7,3 +7,4 @@ export * from "./GlobalSettingsSlider/GlobalSettingsSlider";
 export * from "./ThemeSelectorButton/ThemeSelectorButton";
 export * from "./SearchSection/SearchSection";
 export * from "./ChartConfigurationSection/ChartConfigurationSection";
+export * from "./LanguageSelectorDropdown/LanguageSelectorDropdown";

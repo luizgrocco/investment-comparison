@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Slide, Grid, IconButton } from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
+import { Grid, IconButton } from "@mui/material";
+export { Slide as SSlide } from "@mui/material";
+export { default as SSettingsIcon } from "@mui/icons-material/Settings";
 
 export const SGlobalSettingsContainer = styled(Grid)`
   overflow: hidden;
@@ -16,10 +17,6 @@ export const SGlobalSettingsContainer = styled(Grid)`
 export const SIconButton = styled(IconButton)`
   color: inherit;
 `;
-
-export const SSettingsIcon = styled(SettingsIcon)``;
-
-export const SSlide = styled(Slide)``;
 
 export const SConfigGroupContainer = styled(Grid)`
   display: flex;

@@ -168,7 +168,7 @@ export const SDeleteAllAssetsButton = styled(Button).attrs(({ theme }) => ({
   height: 37px;
   padding: 6px 12px;
 
-  /* TODO: Sort this situation */
+  /* TODO: Better contrast when hovered between in dark/light mode */
   &:hover {
     background-color: ${({ theme }) =>
       theme.palette.mode === "light" ? theme.palette.error.main : "none"};
