@@ -122,25 +122,25 @@ export const SearchSection: React.FC = () => {
         open={Boolean(searchInputRef.current) && isEnabled && isSuccess}
         container={searchInputRef.current}
       >
-        <SSearchResultsContainer>
-          {isSuccess && !isLoading
-            ? toPairs(data).map(([assetCategory, assets]) => (
-                <SCategoriesContainer key={assetCategory}>
-                  <SCategorySeparatorLine $assetCategory={assetCategory}>
-                    {t(`assetCategories.${assetCategory}`)}
-                  </SCategorySeparatorLine>
-                  {assets?.map((asset) => (
-                    <AssetSearchItem
-                      key={asset.identifier}
-                      asset={asset}
-                      assetCategory={assetCategory}
-                      handler={handleAddAsset(asset)}
-                    />
-                  ))}
-                </SCategoriesContainer>
-              ))
-            : null}
-        </SSearchResultsContainer>
+        {isSuccess && !isLoading ? (
+          <SSearchResultsContainer>
+            {toPairs(data).map(([assetCategory, assets]) => (
+              <SCategoriesContainer key={assetCategory}>
+                <SCategorySeparatorLine $assetCategory={assetCategory}>
+                  {t(`assetCategories.${assetCategory}`)}
+                </SCategorySeparatorLine>
+                {assets?.map((asset) => (
+                  <AssetSearchItem
+                    key={asset.identifier}
+                    asset={asset}
+                    assetCategory={assetCategory}
+                    handler={handleAddAsset(asset)}
+                  />
+                ))}
+              </SCategoriesContainer>
+            ))}
+          </SSearchResultsContainer>
+        ) : null}
       </SSearchResults>
       <SAssetsContainer>
         {selectedAssets.map((asset) => (

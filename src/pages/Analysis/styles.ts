@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export const SPageContainer = styled(Grid)`
   display: flex;
@@ -7,45 +7,10 @@ export const SPageContainer = styled(Grid)`
   flex-direction: column;
 `;
 
-export const SConfigurationContainer = styled(Grid)`
+export const SGeneralConfigurationContainer = styled(Grid)`
   display: flex;
-  flex-direction: column;
   padding: 0 2%;
   padding-right: 0;
-`;
-
-export const SConfigurationFirstRow = styled(Grid)`
-  display: flex;
-  flex: 1;
-  margin-top: 2.5vh;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const STitle = styled(Typography)`
-  font-weight: 600;
-  font-style: normal;
-  font-size: 23px;
-`;
-
-export const SShareButtonsContainer = styled(Grid)`
-  display: flex;
-  gap: 20px;
-`;
-
-export const SGlobalConfigsPositioner = styled(Grid)`
-  right: 0;
-`;
-
-export const SConfigurationSecondRow = styled(Grid)`
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const SSubtitle = styled(Typography)`
-  font-size: 16px;
 `;
 
 export const SSearchContainer = styled(Grid)`

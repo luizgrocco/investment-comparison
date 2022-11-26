@@ -1,44 +1,22 @@
 import React from "react";
 import {
   SPageContainer,
-  SConfigurationContainer,
-  SConfigurationFirstRow,
-  STitle,
-  SShareButtonsContainer,
-  SGlobalConfigsPositioner,
-  SConfigurationSecondRow,
-  SSubtitle,
+  SGeneralConfigurationContainer,
   SSearchContainer,
   SChartConfigurationContainer,
 } from "./styles";
 import {
-  ShareLinkButton,
-  ShareQrCodeButton,
-  GlobalSettingsSlider,
   SearchSection,
   ChartConfigurationSection,
+  GeneralConfigurationSection,
 } from "../../components";
 
 export const Analysis: React.FC = () => {
   return (
     <SPageContainer>
-      <SConfigurationContainer>
-        <SConfigurationFirstRow>
-          <STitle>Compare os ativos</STitle>
-          <SShareButtonsContainer>
-            <ShareQrCodeButton />
-            <ShareLinkButton />
-            <SGlobalConfigsPositioner>
-              <GlobalSettingsSlider />
-            </SGlobalConfigsPositioner>
-          </SShareButtonsContainer>
-        </SConfigurationFirstRow>
-        <SConfigurationSecondRow>
-          <SSubtitle>
-            Acompanhe os ativos que você está monitorando e veja o que está
-          </SSubtitle>
-        </SConfigurationSecondRow>
-      </SConfigurationContainer>
+      <SGeneralConfigurationContainer>
+        <GeneralConfigurationSection />
+      </SGeneralConfigurationContainer>
       <SSearchContainer>
         <SearchSection />
       </SSearchContainer>

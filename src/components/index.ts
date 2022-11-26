@@ -1,5 +1,6 @@
 export * from "./FloatDevTools/FloatDevTools";
 export * from "./Giovanna/Giovanna";
+export * from "./GeneralConfigurationSection/GeneralConfigurationSection";
 export * from "./ShareLinkButton/ShareLinkButton";
 export * from "./ShareQrCodeButton/ShareQrCodeButton";
 export * from "./GlobalSettingsSlider/GlobalSettingsSlider";
