@@ -16,7 +16,9 @@ export const en = {
     qrCodeButtonText: "Generate QR Code",
     copyLinkButtonText: "Copy Link",
     language: "Language",
-    english: "English",
-    portuguese: "Portuguese",
+    languageNames: {
+      pt: "Portuguese",
+      en: "English",
+    },
   },
 };

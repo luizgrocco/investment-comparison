@@ -10,17 +10,18 @@ import {
 } from "./styles";
 
 import { useTranslation } from "react-i18next";
+import { availableLanguages } from "../../i18n";
 
 export const LanguageSelectorDropdown: React.FC = () => {
   const { t, i18n } = useTranslation();
 
-  const handleChange = (event: SelectChangeEvent): void => {
-    i18n.changeLanguage(event.target.value);
+  const handleChange = (event: SelectChangeEvent<unknown>): void => {
+    i18n.changeLanguage(event.target.value as string);
   };
 
   return (
     <SLanguageSelectorContainer>
-      <SFormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <SFormControl sx={{ minWidth: 120 }} size="small">
         <SLanguageLabel id="language-label">{t("language")}</SLanguageLabel>
         <SLanguageDropdown
           labelId="language-label"
@@ -29,9 +30,11 @@ export const LanguageSelectorDropdown: React.FC = () => {
           label={t("language")}
           onChange={handleChange}
         >
-          {/* TODO: List languages from i18n resources definition */}
-          <SLanguageItem value={"en"}>{t("english")}</SLanguageItem>
-          <SLanguageItem value={"pt"}>{t("portuguese")}</SLanguageItem>
+          {availableLanguages.map((language) => (
+            <SLanguageItem value={language} key={language}>
+              {t(`languageNames.${language}`)}
+            </SLanguageItem>
+          ))}
         </SLanguageDropdown>
       </SFormControl>
     </SLanguageSelectorContainer>

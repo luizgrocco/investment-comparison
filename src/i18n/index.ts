@@ -4,13 +4,14 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { pt, en } from "./translations";
+import { keys } from "ramda";
 
 export const resources = {
   pt,
   en,
 };
 
-export type AvailableLanguages = keyof typeof resources;
+export const availableLanguages = keys(resources);
 
 export const defaultNS = "translation";
 
