@@ -53,6 +53,7 @@ export const SSearchResults = styled(Popper).attrs(() => ({
   placement: "bottom-start",
 }))`
   width: 100%;
+  padding: 0 2%;
   z-index: 40;
 `;
 

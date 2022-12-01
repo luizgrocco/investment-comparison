@@ -30,11 +30,7 @@ import { AssetSearchItem } from "./AssetSearchItem/AssetSearchItem";
 import { toPairs } from "ramda";
 
 import { useQuery } from "@tanstack/react-query";
-import {
-  AssetCategoryEnum,
-  AssetType,
-  fetchSearchAssets,
-} from "../../api/rest-api";
+import { AssetType, fetchSearchAssets } from "../../api/rest-api";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectAsstesFromDefaultPortfolio,
@@ -58,6 +54,7 @@ export const SearchSection: React.FC = () => {
   );
   const hasAssets = useMemo(() => selectedAssets.length > 0, [selectedAssets]);
 
+  // TODO: Refactor this into a separate hook
   const { data, isLoading, isSuccess } = useQuery(
     ["searchBarText", searchQuery],
     fetchSearchAssets,
@@ -84,17 +81,10 @@ export const SearchSection: React.FC = () => {
     dispatch(deleteAllAssetsFromDefaultPortfolio());
   };
 
-  const handleAddAsset = (asset: AssetType) => (): void => {
+  const handleAddAsset = (asset: AssetType): void => {
     dispatch(addAssetToDefaultPortfolio(asset));
     setSearchQuery("");
   };
-
-  // TODO: Prevent input from highlighting when assets are hovered
-  // const handleOnHover: React.MouseEventHandler<HTMLDivElement> = (
-  //   event
-  // ): void => {
-  //   event.stopPropagation();
-  // };
 
   return (
     <SSearchBarContainer>
@@ -120,7 +110,7 @@ export const SearchSection: React.FC = () => {
       <SSearchResults
         anchorEl={searchInputRef.current}
         open={Boolean(searchInputRef.current) && isEnabled && isSuccess}
-        container={searchInputRef.current}
+        // TODO: Find a better container for this (default is document body), Hint: container:{something.current}
       >
         {isSuccess && !isLoading ? (
           <SSearchResultsContainer>
@@ -133,8 +123,7 @@ export const SearchSection: React.FC = () => {
                   <AssetSearchItem
                     key={asset.identifier}
                     asset={asset}
-                    assetCategory={assetCategory}
-                    handler={handleAddAsset(asset)}
+                    handler={handleAddAsset}
                   />
                 ))}
               </SCategoriesContainer>
@@ -145,8 +134,7 @@ export const SearchSection: React.FC = () => {
       <SAssetsContainer>
         {selectedAssets.map((asset) => (
           <SAssetItem key={asset.identifier}>
-            {/* FIXME: THIS CASTING IS ABSOLUTELY WRONG, BECAUSE ASSET TYPES CAN BE "FI" OR "FII" for example while AssetCategoryEnum cannot, refactoring is needed*/}
-            <SColorBar $assetCategory={asset.assetType as AssetCategoryEnum} />
+            <SColorBar $assetCategory={asset.assetCategory} />
             <SAssetLabel>{asset.label}</SAssetLabel>
             <SDeleteAssetButton onClick={handleDeleteAsset(asset.identifier)}>
               <SDeleteAssetIcon />

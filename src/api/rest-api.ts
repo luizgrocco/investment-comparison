@@ -2,6 +2,7 @@ import axios from "axios";
 import { stringify } from "qs";
 import { z } from "zod";
 import { QueryFunctionContext } from "@tanstack/react-query";
+import { toPairs, zipObj, keys } from "ramda";
 
 axios.defaults.baseURL = String(process.env.REACT_APP_API_URL);
 axios.defaults.timeout = 60000;
@@ -33,7 +34,11 @@ const searchAssetSchema = z.object({
   type: z.string().nullable().default(null),
 });
 
-export type AssetType = z.infer<typeof searchAssetSchema>;
+type SearchAssetType = z.infer<typeof searchAssetSchema>;
+
+export interface AssetType extends SearchAssetType {
+  assetCategory: AssetCategoryEnum;
+}
 
 const fetchSearchAssetsSchema = z.record(
   assetCategoryEnum,
@@ -49,7 +54,16 @@ export const fetchSearchAssets = (
     .get(`asset?${stringify({ searchString })}`, {
       signal,
     })
-    // TODO: Inject the assetCategory into asset data before returning
-    .then((res) => fetchSearchAssetsSchema.parse(res.data));
+    .then((res) => {
+      const backendAssets = fetchSearchAssetsSchema.parse(res.data);
+      const assetsCategories = keys(backendAssets);
+      const assetsEnhancedWithCategories = toPairs(backendAssets).map(
+        ([key, array]) =>
+          array?.map((asset) => ({ ...asset, assetCategory: key }))
+      );
+      const assets = zipObj(assetsCategories, assetsEnhancedWithCategories);
+
+      return assets;
+    });
   return response;
 };

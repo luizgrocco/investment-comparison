@@ -1,22 +1,20 @@
 import React from "react";
 import { SAssetContainer, SColorBar, SAssetLabel } from "./styles";
 
-import { AssetCategoryEnum, AssetType } from "../../../api/rest-api";
+import { AssetType } from "../../../api/rest-api";
 
 interface AssetComponentType {
-  handler: () => void;
+  handler: (asset: AssetType) => void;
   asset: AssetType;
-  assetCategory: AssetCategoryEnum;
 }
 
 export const AssetSearchItem: React.FC<AssetComponentType> = ({
   handler,
   asset,
-  assetCategory,
 }) => {
   return (
-    <SAssetContainer onClick={handler}>
-      <SColorBar $assetCategory={assetCategory} />
+    <SAssetContainer onClick={() => handler(asset)}>
+      <SColorBar $assetCategory={asset.assetCategory} />
       <SAssetLabel>{asset.label}</SAssetLabel>
     </SAssetContainer>
   );
