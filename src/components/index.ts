@@ -8,3 +8,6 @@ export * from "./ThemeSelectorButton/ThemeSelectorButton";
 export * from "./SearchSection/SearchSection";
 export * from "./ChartConfigurationSection/ChartConfigurationSection";
 export * from "./LanguageSelectorDropdown/LanguageSelectorDropdown";
+export * from "./InitialApplication/InitialApplication";
+export * from "./Benchmarks/Benchmarks";
+export * from "./Periods/Periods";
