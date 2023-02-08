@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Button, Typography } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
-export const SButton = styled(Button)`
+export const SButton = styled(Button).attrs(() => ({
+  variant: "contained",
+}))`
   padding: 6px 12px;
 `;
 

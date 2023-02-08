@@ -44,7 +44,7 @@ export const portfoliosSlice = createSlice({
   },
 });
 
-export const selectAsstesFromDefaultPortfolio = (
+export const selectAssetsFromDefaultPortfolio = (
   state: RootState
 ): PortfoliosState["defaultPortfolio"]["assets"] =>
   state.portfolios.defaultPortfolio.assets;

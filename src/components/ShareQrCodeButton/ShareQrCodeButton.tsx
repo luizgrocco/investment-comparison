@@ -6,7 +6,7 @@ export const ShareQrCodeButton: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <SButton variant="contained">
+    <SButton>
       <SQrCodeIcon />
       <SButtonText>{t("qrCodeButtonText")}</SButtonText>
     </SButton>

@@ -28,12 +28,11 @@ import {
 } from "./styles";
 import { AssetSearchItem } from "./AssetSearchItem/AssetSearchItem";
 import { toPairs } from "ramda";
-
-import { useQuery } from "@tanstack/react-query";
-import { AssetType, fetchSearchAssets } from "../../api/rest-api";
+import { useSearchQuery } from "../../hooks";
+import { AssetType } from "../../api/rest-api";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
-  selectAsstesFromDefaultPortfolio,
+  selectAssetsFromDefaultPortfolio,
   addAssetToDefaultPortfolio,
   deleteAssetFromDefaultPortfolio,
   deleteAllAssetsFromDefaultPortfolio,
@@ -45,7 +44,7 @@ export const SearchSection: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
-  const selectedAssets = useAppSelector(selectAsstesFromDefaultPortfolio);
+  const selectedAssets = useAppSelector(selectAssetsFromDefaultPortfolio);
 
   const isEnabled = useMemo(() => searchQuery.length >= 3, [searchQuery]);
   const searchQueryNotEmpty = useMemo(
@@ -54,15 +53,10 @@ export const SearchSection: React.FC = () => {
   );
   const hasAssets = useMemo(() => selectedAssets.length > 0, [selectedAssets]);
 
-  // TODO: Refactor this into a separate hook
-  const { data, isLoading, isSuccess } = useQuery(
-    ["searchBarText", searchQuery],
-    fetchSearchAssets,
-    {
-      enabled: isEnabled,
-      cacheTime: 1 * 60 * 1000,
-    }
-  );
+  const { data, isLoading, isSuccess } = useSearchQuery({
+    searchQuery,
+    enabled: isEnabled,
+  });
 
   const handleChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (
     event

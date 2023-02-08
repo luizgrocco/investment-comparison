@@ -6,7 +6,7 @@ export const ShareLinkButton: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <SButton variant="contained">
+    <SButton>
       <SContentCopyIcon />
       <SButtonText>{t("copyLinkButtonText")}</SButtonText>
     </SButton>
