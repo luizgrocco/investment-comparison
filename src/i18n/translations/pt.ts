@@ -20,5 +20,6 @@ export const pt = {
       pt: "Português",
       en: "Inglês",
     },
+    benchmarks: "Benchmarks",
   },
 };

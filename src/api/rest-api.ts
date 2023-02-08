@@ -25,7 +25,7 @@ export type AssetCategoryEnum = z.infer<typeof assetCategoryEnum>;
 const searchAssetSchema = z.object({
   assetType: z.string().nullable().default(null),
   cnpj: z.string().nullable().default(null),
-  identifier: z.string().nullable().default(null),
+  identifier: z.coerce.string().nullable().default(null),
   isin: z.string().nullable().default(null),
   label: z.string().nullable().default(null),
   managementCompany: z.string().nullable().default(null),
@@ -65,5 +65,41 @@ export const fetchSearchAssets = (
 
       return assets;
     });
+  return response;
+};
+
+const benchmarkAssetSchema = searchAssetSchema
+  .pick({
+    assetType: true,
+    label: true,
+    identifier: true,
+  })
+  .array();
+
+export const fetchBenchmarks = (): typeof response => {
+  const response = axios.get("asset/indices").then((res) => {
+    const backendBenchmarks = benchmarkAssetSchema.parse(res.data);
+    return backendBenchmarks;
+  });
+
+  return response;
+};
+
+const periodsSchema = z
+  .enum([
+    "OTIMO",
+    "NO_MES",
+    "SEIS_MESES_UTEIS",
+    "UM_ANO_UTIL",
+    "CINCO_ANOS_UTEIS",
+  ])
+  .array();
+
+export const fetchPeriods = (): typeof response => {
+  const response = axios.get("period").then((res) => {
+    const backendPeriods = periodsSchema.parse(res.data);
+    return backendPeriods;
+  });
+
   return response;
 };
