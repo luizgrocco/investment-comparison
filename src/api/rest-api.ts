@@ -68,17 +68,17 @@ export const fetchSearchAssets = (
   return response;
 };
 
-const benchmarkAssetSchema = searchAssetSchema
-  .pick({
-    assetType: true,
-    label: true,
-    identifier: true,
-  })
-  .array();
+const benchmarkAssetSchema = searchAssetSchema.pick({
+  assetType: true,
+  label: true,
+  identifier: true,
+});
+
+export type BenchmarkType = z.infer<typeof benchmarkAssetSchema>;
 
 export const fetchBenchmarks = (): typeof response => {
   const response = axios.get("asset/indices").then((res) => {
-    const backendBenchmarks = benchmarkAssetSchema.parse(res.data);
+    const backendBenchmarks = benchmarkAssetSchema.array().parse(res.data);
     return backendBenchmarks;
   });
 
