@@ -21,5 +21,13 @@ export const pt = {
       en: "Inglês",
     },
     benchmarks: "Benchmarks",
+    period: "Período",
+    periods: {
+      OTIMO: "Ótimo",
+      NO_MES: "Mês",
+      SEIS_MESES_UTEIS: "6 Meses",
+      UM_ANO_UTIL: "1 Ano",
+      CINCO_ANOS_UTEIS: "5 Anos",
+    },
   },
 };

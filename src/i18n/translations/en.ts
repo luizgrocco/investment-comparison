@@ -21,5 +21,13 @@ export const en = {
       en: "English",
     },
     benchmarks: "Benchmarks",
+    period: "Range",
+    periods: {
+      OTIMO: "Optimal",
+      NO_MES: "1 Month",
+      SEIS_MESES_UTEIS: "6 Months",
+      UM_ANO_UTIL: "1 Year",
+      CINCO_ANOS_UTEIS: "5 Years",
+    },
   },
 };
